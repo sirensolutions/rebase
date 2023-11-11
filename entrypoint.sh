@@ -106,5 +106,16 @@ else
 	git rebase origin/$BASE_BRANCH
 fi
 
+#####################
+# NOTE:
+# a custom bit added by siren to touch a file - this will always trigger tests 
+DATE=$(date)
+echo "// some string $DATE" > src/dummy_file.js
+git add src/dummy_file.js
+git status
+git commit -m "dummy commit to force tests"
+# end of a custom bit
+#####################
+
 # push back
 git push --force-with-lease fork fork/$HEAD_BRANCH:$HEAD_BRANCH
